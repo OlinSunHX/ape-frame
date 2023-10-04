@@ -10,7 +10,8 @@ import org.apache.ibatis.session.defaults.DefaultSqlSession.StrictMap;
 import java.lang.reflect.Field;
 import java.sql.Statement;
 import java.util.*;
-
+//在config中用来集成各类设置
+//一个插件 用来拦截危险操作
 @Intercepts(value = {
         @Signature(args = { Statement.class, ResultHandler.class }, method = "query", type = StatementHandler.class),
         @Signature(args = { Statement.class }, method = "update", type = StatementHandler.class),
