@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ape-common/ape-common.iml" filepath="$PROJECT_DIR$/ape-common/ape-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/ape-common/ape-common-mybatisplus/ape-common-mybatisplus.iml" filepath="$PROJECT_DIR$/ape-common/ape-common-mybatisplus/ape-common-mybatisplus.iml" />
       <module fileurl="file://$PROJECT_DIR$/ape-common/ape-common-web/ape-common-web.iml" filepath="$PROJECT_DIR$/ape-common/ape-common-web/ape-common-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ape-frames.iml" filepath="$PROJECT_DIR$/ape-frames.iml" />
       <module fileurl="file://$PROJECT_DIR$/ape-user/ape-user.iml" filepath="$PROJECT_DIR$/ape-user/ape-user.iml" />
     </modules>
   </component>

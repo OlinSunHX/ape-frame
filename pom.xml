@@ -60,6 +60,7 @@
         </repository>
     </repositories>
 
+    <!-- build 这里定义了如何打包编译这个项目-->
     <build>
         <plugins>
             <plugin>
