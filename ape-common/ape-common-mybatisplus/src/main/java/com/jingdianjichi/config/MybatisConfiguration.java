@@ -1,5 +1,7 @@
 package com.jingdianjichi.config;
 
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.jingdianjichi.inteceptor.SqlBeautyInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +15,17 @@ public class MybatisConfiguration {
     //@Bean就可以导入第三方库
     @Bean//这里的SqlBeautyInterceptor我们就引入的是一个第三方的插件
     @ConditionalOnProperty(name = {"sql.beauty.show"}, havingValue = "true", matchIfMissing = true) //根据一些条件来装载这个东西 可以选择用也可以选择不用
+
+
+    // mybatis提供的拦截器需要的写法
     public SqlBeautyInterceptor sqlBeautyInterceptor(){
         return new SqlBeautyInterceptor();
+    }
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor(){
+        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+        mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        return mybatisPlusInterceptor;
     }
 
 }

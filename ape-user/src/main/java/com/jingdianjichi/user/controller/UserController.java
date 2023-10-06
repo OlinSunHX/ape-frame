@@ -30,9 +30,9 @@ public class UserController {
     public Result delete(@PathVariable Integer id) {
         return Result.ok(userService.delete(id));
     }
-
+//@RequestBody主要用来接收前端传递给后端的json字符串中的数据的
     @GetMapping()
-    public Result getUserPage(UserListReq userListReq){
+    public Result getPage(@RequestBody UserListReq userListReq){
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userListReq, userDto);
         return Result.ok(userService.getUserPage(userDto));
