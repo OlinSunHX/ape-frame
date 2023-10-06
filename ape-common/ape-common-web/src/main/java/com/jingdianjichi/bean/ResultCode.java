@@ -1,4 +1,4 @@
-package com.jingdianjichi;
+package com.jingdianjichi.bean;
 //定义出现的code都是什么意义
 //给前端看 规范
 public class ResultCode {

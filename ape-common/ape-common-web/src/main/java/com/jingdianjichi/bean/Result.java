@@ -1,18 +1,20 @@
-package com.jingdianjichi;
+package com.jingdianjichi.bean;
 
 import lombok.Data;
 
 import java.io.Serializable;
 @Data
 public class Result<T> implements Serializable {
-    //不让他实例化，是能使用我们提供的静态方法
-    private Result() {
 
+    private Result() {
+        //不让他实例化，只能使用我们提供的静态方法
     }
     private boolean success;
     private Integer code;
     private String message;
     private T data;//需要展示的data 不是到是啥 需要用泛型
+
+
     public static Result ok(){
         Result result = new Result();
         result.setSuccess(true);

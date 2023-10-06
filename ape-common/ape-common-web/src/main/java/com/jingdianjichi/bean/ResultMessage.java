@@ -1,4 +1,4 @@
-package com.jingdianjichi;
+package com.jingdianjichi.bean;
 
 //有文字与之对应
 public class ResultMessage {
