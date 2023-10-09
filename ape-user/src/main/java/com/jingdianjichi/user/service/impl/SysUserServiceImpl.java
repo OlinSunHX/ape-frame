@@ -1,11 +1,15 @@
 package com.jingdianjichi.user.service.impl;
 
-import com.jingdianjichi.user.entity.SysUser;
+import com.jingdianjichi.bean.PageResponse;
+import com.jingdianjichi.user.entity.po.SysUser;
 import com.jingdianjichi.user.dao.SysUserDao;
+import com.jingdianjichi.user.entity.req.SysUserReq;
 import com.jingdianjichi.user.service.SysUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (SysUser)表服务实现类
@@ -21,7 +25,6 @@ public class SysUserServiceImpl implements SysUserService {
     /**
      * 通过ID查询单条数据
      *
-     * @param 主键
      * @param id
      * @return 实例对象
      */
@@ -33,14 +36,21 @@ public class SysUserServiceImpl implements SysUserService {
     /**
      * 分页查询
      *
-     * @param sysUser 筛选条件
-     * @param pageRequest      分页对象
      * @return 查询结果
      */
     @Override
-    public Page<SysUser> queryByPage(SysUser sysUser, Integer pageNo, Integer pageSize) {
+    public PageResponse<SysUser> queryByPage(SysUserReq sysUserReq) {
+        SysUser sysUser = new SysUser();
+        BeanUtils.copyProperties(sysUserReq,sysUser);
+        PageResponse<SysUser> pageResponse = new PageResponse<>();
+        pageResponse.setCurrent(sysUserReq.getPageNo());
+        pageResponse.setPageSize(sysUserReq.getPageSize());
+        Long pageStart = (sysUserReq.getPageNo() - 1) *sysUserReq.getPageSize();
         long total = this.sysUserDao.count(sysUser);
-        return new PageImpl<>(this.sysUserDao.queryAllByLimit(sysUser, pageNo, pageSize));
+        List<SysUser> sysUserList = this.sysUserDao.queryAllByLimit(sysUser, pageStart, sysUserReq.getPageSize());
+        pageResponse.setTotal(total);
+        pageResponse.setRecords(sysUserList);
+        return pageResponse;
     }
 
     /**
@@ -70,11 +80,11 @@ public class SysUserServiceImpl implements SysUserService {
     /**
      * 通过主键删除数据
      *
-     * @param  主键
+     * @param id
      * @return 是否成功
      */
     @Override
-    public boolean deleteById( ) {
+    public boolean deleteById(Long id) {
         return this.sysUserDao.deleteById() > 0;
     }
 }

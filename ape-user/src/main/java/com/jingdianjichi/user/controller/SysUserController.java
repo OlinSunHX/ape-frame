@@ -1,7 +1,9 @@
 package com.jingdianjichi.user.controller;
 
+import com.jingdianjichi.bean.PageResponse;
 import com.jingdianjichi.bean.Result;
-import com.jingdianjichi.user.entity.SysUser;
+import com.jingdianjichi.user.entity.po.SysUser;
+import com.jingdianjichi.user.entity.req.SysUserReq;
 import com.jingdianjichi.user.service.SysUserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +27,12 @@ public class SysUserController {
     /**
      * 分页查询
      *
-     * @param sysUser 筛选条件
-     * @param pageRequest      分页对象
+
      * @return 查询结果
      */
     @GetMapping
-    public Result<Page<SysUser>> queryByPage(SysUser sysUser, PageRequest pageRequest) {
-        return Result.ok(this.sysUserService.queryByPage(sysUser, pageRequest));
+    public Result<PageResponse<SysUser>> queryByPage(SysUserReq sysUserReq) {
+        return Result.ok(this.sysUserService.queryByPage(sysUserReq));
     }
 
     /**
@@ -74,7 +75,7 @@ public class SysUserController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public Result<Boolean> deleteById( id) {
+    public Result<Boolean> deleteById(Long id) {
         return Result.ok(this.sysUserService.deleteById(id));
     }
 

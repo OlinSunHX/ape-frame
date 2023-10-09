@@ -1,4 +1,4 @@
-package com.jingdianjichi.user.entity;
+package com.jingdianjichi.user.entity.po;
 
 import java.util.Date;
 import java.io.Serializable;

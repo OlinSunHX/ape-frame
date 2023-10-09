@@ -1,6 +1,6 @@
 package com.jingdianjichi.user.dao;
 
-import com.jingdianjichi.user.entity.SysUser;
+import com.jingdianjichi.user.entity.po.SysUser;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public interface SysUserDao {
     // @Param的作用就是给参数命名，比如在mapper里面某方法A（int id），当添加注解后A（@Param("userId") int id），也就是说外部想要取出传入的id值，只需要取它的参数名userId就可以了。
     // 将参数值传如SQL语句中，通过#{userId}进行取值给SQL的参数赋值。
 
-    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageNo") Integer pageNo, @Param("pageSize") Integer pageSize);
+    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageStart") Long pageStart, @Param("pageSize") Long pageSize);
 
     /**
      * 统计总行数

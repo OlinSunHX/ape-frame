@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jingdianjichi.user.dao.SysUserDao">
 
-    <resultMap type="com.jingdianjichi.user.entity.SysUser" id="SysUserMap">
+    <resultMap type="com.jingdianjichi.user.entity.po.SysUser" id="SysUserMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
@@ -56,7 +56,7 @@ idnameagecreate_bycreate_timeupdate_byupdate_timedelete_flagversion
                 and version = #{po.version}
             </if>
         </where>
-        limit #{pageNo}, #{pageSize}
+        limit #{pageStart}, #{pageSize}
     </select>
 
     <!--统计总行数-->
