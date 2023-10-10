@@ -1,23 +1,26 @@
-package com.jingdianjichi.user.dao;
+package com.jingdianjichi.user.mapper;
 
 import com.jingdianjichi.user.entity.po.SysUser;
 import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScan;
+
 import java.util.List;
 
 /**
  * (SysUser)表数据库访问层
  *
  * @author makejava
- * @since 2023-10-09 11:14:09
+ * @since 2022-09-10 21:14:34
  */
 public interface SysUserDao {
 
     /**
      * 通过ID查询单条数据
      *
+     * @param id 主键
      * @return 实例对象
      */
-    SysUser queryById( );
+    SysUser queryById(Long id);
 
     /**
      * 查询指定行数据
@@ -25,10 +28,7 @@ public interface SysUserDao {
      * @param sysUser 查询条件
      * @return 对象列表
      */
-    // @Param的作用就是给参数命名，比如在mapper里面某方法A（int id），当添加注解后A（@Param("userId") int id），也就是说外部想要取出传入的id值，只需要取它的参数名userId就可以了。
-    // 将参数值传如SQL语句中，通过#{userId}进行取值给SQL的参数赋值。
-
-    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageStart") Long pageStart, @Param("pageSize") Long pageSize);
+    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageStart") Long pageStart,@Param("pageSize") Long pageSize);
 
     /**
      * 统计总行数
@@ -74,9 +74,10 @@ public interface SysUserDao {
     /**
      * 通过主键删除数据
      *
+     * @param id 主键
      * @return 影响行数
      */
-    int deleteById( );
+    int deleteById(Long id);
 
 }
 

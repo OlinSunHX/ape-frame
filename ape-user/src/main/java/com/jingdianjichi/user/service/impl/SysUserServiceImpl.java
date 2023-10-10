@@ -2,7 +2,7 @@ package com.jingdianjichi.user.service.impl;
 
 import com.jingdianjichi.bean.PageResponse;
 import com.jingdianjichi.user.entity.po.SysUser;
-import com.jingdianjichi.user.dao.SysUserDao;
+import com.jingdianjichi.user.mapper.SysUserDao;
 import com.jingdianjichi.user.entity.req.SysUserReq;
 import com.jingdianjichi.user.service.SysUserService;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +15,7 @@ import java.util.List;
  * (SysUser)表服务实现类
  *
  * @author makejava
- * @since 2023-10-09 11:14:16
+ * @since 2022-09-10 21:14:47
  */
 @Service("sysUserService")
 public class SysUserServiceImpl implements SysUserService {
@@ -25,12 +25,12 @@ public class SysUserServiceImpl implements SysUserService {
     /**
      * 通过ID查询单条数据
      *
-     * @param id
+     * @param id 主键
      * @return 实例对象
      */
     @Override
     public SysUser queryById(Long id) {
-        return this.sysUserDao.queryById();
+        return this.sysUserDao.queryById(id);
     }
 
     /**
@@ -45,7 +45,7 @@ public class SysUserServiceImpl implements SysUserService {
         PageResponse<SysUser> pageResponse = new PageResponse<>();
         pageResponse.setCurrent(sysUserReq.getPageNo());
         pageResponse.setPageSize(sysUserReq.getPageSize());
-        Long pageStart = (sysUserReq.getPageNo() - 1) *sysUserReq.getPageSize();
+        Long pageStart = (sysUserReq.getPageNo() - 1) * sysUserReq.getPageSize();
         long total = this.sysUserDao.count(sysUser);
         List<SysUser> sysUserList = this.sysUserDao.queryAllByLimit(sysUser, pageStart, sysUserReq.getPageSize());
         pageResponse.setTotal(total);
@@ -80,11 +80,11 @@ public class SysUserServiceImpl implements SysUserService {
     /**
      * 通过主键删除数据
      *
-     * @param id
+     * @param id 主键
      * @return 是否成功
      */
     @Override
     public boolean deleteById(Long id) {
-        return this.sysUserDao.deleteById() > 0;
+        return this.sysUserDao.deleteById(id) > 0;
     }
 }

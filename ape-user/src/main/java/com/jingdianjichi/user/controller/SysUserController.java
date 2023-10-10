@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * (SysUser)表控制层
  *
  * @author makejava
- * @since 2023-10-09 11:14:09
+ * @since 2022-09-10 21:14:34
  */
 @RestController
 @RequestMapping("sysUser")
@@ -27,7 +27,6 @@ public class SysUserController {
     /**
      * 分页查询
      *
-
      * @return 查询结果
      */
     @GetMapping
